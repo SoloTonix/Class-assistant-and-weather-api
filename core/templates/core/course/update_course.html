@@ -1,0 +1,18 @@
+{% extends 'core/admin/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <form method="post" action="{% url 'CreateCourse' %}">
+                {% csrf_token %}
+                {{form|crispy}}
+                <a href="{% url 'UpdateCourse' %}"><button type="submit" name="write" class="btn btn-success">Create Course</button></a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

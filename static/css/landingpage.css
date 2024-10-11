@@ -1,0 +1,25 @@
+*{
+    padding: 0px; margin: 0px;
+}
+
+{
+    background-color: antiquewhite;
+    margin-left: 30px;
+}
+.Notes{
+    display: flex;
+    justify-content: space-between;
+}
+
+.OneNote{
+}
+
+.OneNoteIcons{
+    display: flex;
+    justify-content: space-between;
+}
+
+.OneNoteIcons i{
+    padding-left: 20px;
+    font-size: 20px;
+}

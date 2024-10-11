@@ -1,0 +1,19 @@
+{% extends 'core/admin/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-lg-6 border mx-auto ">
+            <h2 class="p-3 text-primary" style="text-decoration: underline;">Create</h2>
+            <form method="post" action="">
+                {% csrf_token %}
+                {{form|crispy}}
+                <button type="submit" name="write" class="btn btn-success mb-3">Create Course</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

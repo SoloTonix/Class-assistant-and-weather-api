@@ -1,0 +1,25 @@
+{% extends 'core/admin/base.html' %}
+
+{% block content %}
+<table class="table table-hover">
+    <thead>
+        <tr><th class="fw-bold">Student</th></tr>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Mark</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for student in response %}
+    <tr>
+        <a href="">
+        <th scope="row">1</th>
+        <td>{{student}}</td>
+        </a>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

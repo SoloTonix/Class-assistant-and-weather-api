@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% extends 'core/admin/base.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="(% static 'css/landingpage.css' %)">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <div class="container text-dark">
+        <div class="row">
+            <div class="col-lg-12 px-3">
+                {% block content %}
+                {% if notes %}
+
+                    {% for note in notes %}
+                    <div class="Notes container align-items-lg-between pt-3">
+                        <div class="OneNote">
+                            <a class="text-decoration-none text-dark" href="{% url 'DetailNote' note.id %}"><h5 class="text-success">{{note.title}}</h5></a>
+                        </div>
+                        <div class="OneNoteIcons">
+                            <a href="{% url 'UpdateNote' note.pk %}"><i class="fa fa-pencil"></i></i></a>
+                            <a href="{% url 'DeleteNote' note.pk %}"><i class="fa fa-trash"></i></a>
+                        </div>
+                    </div>
+                    <hr>
+                    {% endfor %}
+                {% else %}
+                <div class="col-lg-8 mt-2 m-auto alert alert-dismissible alert-info fade show">
+                    <h3 class="display-6">This book has no notes in it</h3>
+                    <button type="button"class="btn-close" data-bs-dismiss="alert" type="button" aria-label="close"></button>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+
+
+    </div>
+    {% endblock %}
+</body>
+</html>
