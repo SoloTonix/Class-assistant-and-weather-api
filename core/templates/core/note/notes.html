@@ -12,23 +12,25 @@
 <body>
 
 
-    <div class="container text-dark">
-        <div class="row">
-            <div class="col-lg-12 px-3">
+    <div class="container text-dark ">
+        <div class="row ">
+            <div class="col-md-8">
                 {% block content %}
                 {% if notes %}
 
                     {% for note in notes %}
-                    <div class="Notes container align-items-lg-between pt-3">
+                    <div class="Notes container p-3 border-bottom">
                         <div class="OneNote">
                             <a class="text-decoration-none text-dark" href="{% url 'DetailNote' note.id %}"><h5 class="text-success">{{note.title}}</h5></a>
                         </div>
-                        <div class="OneNoteIcons">
+                        <div class="OneNoteIcons justify-content-end ms-auto">
                             <a href="{% url 'UpdateNote' note.pk %}"><i class="fa fa-pencil"></i></i></a>
                             <a href="{% url 'DeleteNote' note.pk %}"><i class="fa fa-trash"></i></a>
                         </div>
+                        <hr>
                     </div>
-                    <hr>
+                    
+                    
                     {% endfor %}
                 {% else %}
                 <div class="col-lg-8 mt-2 m-auto alert alert-dismissible alert-info fade show">

@@ -12,13 +12,11 @@
 <body>
 
     {% block content %}
-    <div class="container text-dark">
+    <div class="container">
         <div class="row">
     
 
             <div class="col-lg-9 px-3">
-                
-                
              
                 {% for course in courses %}
                 <div class="row m-auto mt-3">
@@ -26,27 +24,17 @@
                         <div class="card border-secondary mb-3"> 
                             <div class="card-header">
                                 <a href="{% url 'CourseDetail' course.pk %}"><h3>{{course.title}}</h3></a>
-                                <a href="{% url 'CreateNote' %}">Write</a>
+                                <a href="{% url 'CreateNote' course.pk %}">Write</a>
                             </div>
                             <div class="card-body text-secondary">
-                            <h5 class="card-title">{{course.title}}</h5>
-                            <p class="card-text">{{course.description}}</p>
+                            
+                            <p class="card-tittle">{{course.description}}</p>
                             <p class="">{{course.created|timesince}}</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
-         
-
-                <div class="row m-auto  px-5">
-                    <div class="col-lg-3">
-
-                    </div>
-
-                </div>
-                
-                ...
                 
             </div>
             <div class="col-lg-3 border">

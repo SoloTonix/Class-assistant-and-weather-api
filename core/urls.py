@@ -15,7 +15,7 @@ urlpatterns = [
 
     # Course-Notes URLS 
     path('note/<int:pk>/', DetailNote, name='DetailNote'),
-    path('create-note/', CreateNote, name='CreateNote'),
+    path('create-note/<int:pk>/', CreateNote, name='CreateNote'),
     path('update/<int:pk>/', UpdateNote, name='UpdateNote'),
     path('delete/<int:pk>/', DeleteNote, name='DeleteNote'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
