@@ -5,8 +5,11 @@
 {% block content %}
 <div class="container">
     <div class="row justify-content-center mt-5">
-        <div class="card shadow-sm col-md-6 ">
-            <h4 class="my-2 p-3 display-4 text-success" >Write a note..</h4>
+        <div class="card shadow-lg col-md-6 ">
+            <div class="d-flex justify-content-center gap-2 align-items-center mt-3 text-success">
+                <h4 class="display-4 ">Write Note </h4>
+                <i class="fa fa-book" style="font-size: 40px;"></i>
+            </div>
             <hr>
             <form action="" method="POST">
                 {% csrf_token %}

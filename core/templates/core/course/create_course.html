@@ -7,8 +7,12 @@
 
 <div class="container">
     <div class="row justify-content-center mt-5">
-        <div class="card shadow-sm col-md-6 ">
-            <h4 class="my-2 p-3 display-4 text-success" >Create Course...</h4>
+        <div class="card shadow-sm col-md-6">
+            <div class="d-flex justify-content-center gap-2 align-items-center my-2">
+                <h4 class="display-4 text-success">Create Course </h4>
+                <i class="fa fa-screwdriver-wrench text-success" style="font-size: 40px;"></i>
+            </div>
+            
             <hr>
             <form action="" method="POST">
                 {% csrf_token %}

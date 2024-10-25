@@ -22,9 +22,12 @@ def Index(request):
 # Course  C.R.U.D.
 @login_required
 def CourseDetail(request, pk):
+    
     course = Course.objects.get(id=pk)
     if course.author == request.user:
         notes = Note.objects.filter(course=course)
+        if len(notes) == 0:
+            return redirect("CreateNote", pk)
     context = {'course':course, 'notes':notes}
     return render(request, 'core/note/notes.html', context)
 
@@ -37,7 +40,6 @@ def CreateCourse(request):
             var.author = request.user
             var.save()
 
-            request.session['course_id'] = var.id
             messages.success(request, 'Your course book haas been created succesfully')
             return redirect('Index')
         else:
@@ -50,18 +52,25 @@ def CreateCourse(request):
 
 @login_required
 def UpdateCourse(request, pk):
-    course = Course.objects.filter(id=pk)
+    course = Course.objects.get(id=pk)
+    form = CreateCourseForm(instance=course)
     if course.author == request.user:
         if request.method == 'POST':
-            form = CreateCourseForm(instance=course)
+            form = CreateCourseForm(request.POST or None, instance=course)
             if form.is_valid():
                 form.save()
+                return redirect('Index')
             else:
                 messages.success(request, 'Invalid Form')
         else:
             form = CreateCourseForm()
     context = {"form":form}
     return render(request, 'core/course/update_course.html', context)
+
+def DeleteCourse(request, pk):
+    course = Course.objects.get(pk=pk)
+    course.delete()
+    return redirect('Index')
 
 
 # Course notes C.R.U.D.
@@ -119,21 +128,7 @@ def DeleteNote(request, pk):
 
 
 
-'''
-def WeatherApi(request):
-    API_KEY = '1234'
-    context = {'data':data, 'query':query}
-    if request.method == 'POST':
-        CITY = request.POST.get('city')
-        url = BASE_URL + 'apiid=' + API_KEY + '&q=' + CITY
-        response = requests.get(url).json()
-        data = response['main']['temp']
-        query = models.City(city, temp)
-        query.save()
-    return render(request, '', context)
 
-
-'''
 
 
 

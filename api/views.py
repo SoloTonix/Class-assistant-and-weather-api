@@ -53,10 +53,10 @@ def NewsAPI(request):
     url2 = 'https://api.mediastack.com/v1/news? access_key = YOUR_ACCESS_KEY& keywords = tennis& countries = us, gb, de'
     response = requests.get(url)
     
-    data = response.json().text
-    information = data['articles']
+    data = response.json()
+    information = data['story']
     
-    info = data['articles'][:6]
+    info = data
     cards = [information[3],information[20],information[3]]
     mids = [information[20], information[18]]
     ads = Advertisement.objects.all()

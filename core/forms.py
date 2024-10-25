@@ -11,7 +11,7 @@ class CreateNoteForm(forms.ModelForm):
 
 
 class CreateCourseForm(forms.ModelForm):
-    description = forms.CharField(required=False)
+    description = forms.CharField(required=False, widget=forms.TextInput(attrs={'rows':3}))
     class Meta:
         model = Course
         fields = ['title', 'description']
