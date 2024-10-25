@@ -6,25 +6,27 @@
         <div class="col-md-8">
             <h4 class="display-4 text-success text-center">Sign Up with us</h4>
             <hr>
-            <form method="post" action="{% url 'Index' %}">
+            <form method="POST" action="">
                 {% csrf_token %}
 
                     {% render_field form.username class='form-control mt-2' placeholder='Your Username' %}
 
                     {% render_field form.email class='form-control mt-2' placeholder='Your Email' %}
 
-                    {% render_field form.password type='password' class='form-control mt-2' placeholder='Your Password' %}
+                    {% render_field form.password1 type='password' class='form-control mt-2' placeholder='Your Password' %}
 
                     {% render_field form.password2 class='form-control mt-2' placeholder='Confirm Password' %}
-    
-    
+                    
                     <button type="submit" class="btn btn-success mt-2">sign in</button>
             </form>
+            {% if form.field.error %}
+                {% for error in form.field.error %}
+                <p>{{error}}</p>
+                {% endfor %}
+            {% endif %}
             <hr>
         </div>
     </div>
-
-
     
 </div>
 <div class="row justify-content-center">

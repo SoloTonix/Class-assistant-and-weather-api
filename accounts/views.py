@@ -30,7 +30,8 @@ def Login(request):
             login(request, user)
             messages.success(request, f'Welcome {username}')
             return redirect('Index')
-        messages.success(request, 'This user does not exist...')
+        else:
+            messages.error(request, 'This user does not exist...')
 
     return render(request, 'accounts/login.html')
 
