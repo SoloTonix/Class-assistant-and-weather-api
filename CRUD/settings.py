@@ -41,12 +41,12 @@ INSTALLED_APPS = [
     # Internal Apps
     'core.apps.CoreConfig',
     'api.apps.ApiConfig',
-    'users.apps.UsersConfig',
     'accounts',
     # External Apps
     'rest_framework',
     'crispy_forms',
     'crispy_bootstrap5',
+    'widget_tweaks',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'

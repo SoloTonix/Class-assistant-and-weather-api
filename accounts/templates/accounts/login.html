@@ -1,38 +1,35 @@
 {% extends 'core/admin/base.html' %}
 
 {% block content %}
-<div class="container col-lg-5 offset mt-5">
-    <h2 class="display-4 py-4">Login</h2>
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-5">
+            <h4 class="display-4 text-success text-center">Login</h4>
+            <hr>
+            <form method="post" action="">
+                {% csrf_token %}
 
-    <form method="post" action="{% url 'Index' %}">
-        {% csrf_token %}
-        <div class="container">
-
-            <div class="mb-3">
-                <input type="text" placeholder="User Name" name="username" class="form-control" required>
-            </div>
-
-            <div class="mb-3">
-                <input type="password" placeholder="Password" class="form-control" name="password" required>
-            </div>
-
+                    <div class="mb-3">
+                        <input type="text" placeholder="User Name" name="username" class="form-control" required>
+                    </div>
+    
+                    <div class="mb-3">
+                        <input type="password" placeholder="Password" class="form-control" name="password" required>
+                    </div>
+    
+                    <button type="submit" class="btn btn-success">sign in</button>
+            </form>
+            <hr>
         </div>
+    </div>
 
-        <br/>
-        <a href="{% url 'Index' %}"><button type="submit" class="mx-5 mb-3 btn btn-success">Login</button></a>
-    </form>
 
     
 </div>
-<div class="row m-auto  px-5">
-    <div class="col-lg-3">
+<div class="row justify-content-center">
 
-    </div>
-
-    <div class="col-lg-3 my-5 ">
-        <li class="text-success"><a class="mt-5" href=""><strong>I don't have an account?</strong></a></li>
-    </div>
-    <div class="col-lg-5 my-5">
+    <div class="col-md-6 my-5 d-flex gap-5 justify-content-center">
+        <li class="text-success"><a class="mt-5" href="{% url 'Register' %}"><strong>I don't have an account?</strong></a></li>
         <li class="text-success"><a class="mt-5" href=""><strong>Login Problems</strong></a></li>
     </div>
 
@@ -41,37 +38,5 @@
 ...
 
 </div>
-<div class="col-lg-3 border">
 
-    <form action="" class="row mt-3" method="POST">
-        {% csrf_token %}
-        <div class="col-lg-8">
-            <input class="form-control" type="text" name="course-search" placeholder="Search for courses">
-        </div>
-        <div class="col-lg-4">
-            <button class="btn btn-info" type="submit" name="search-button"><a href="{% url 'Index' %}">search</a></button>
-        </div>    
-    </form>
-    {% if search %}
-
-    <div class="row m-auto mt-3">
-        <div class="col-lg-12">
-            <div class="card border-secondary mb-3"> 
-                <div class="card-header"><a href=""><h3>{{search.title}}</h3></a></div>
-                <div class="card-body text-secondary">
-                <h5 class="card-title">{{search.title}}</h5>
-                <p class="card-text">{{search.description}}</p>
-                <p class="">{{search.created|timesince}}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {% else %}
-
-
-    {% endif %}
-    </div>
-
-</div>
 {% endblock %}

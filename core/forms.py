@@ -3,10 +3,7 @@ from django.contrib.auth.models import User
 from django import forms 
 from.models import *
 
-class CreateNoteForm(forms.ModelForm):
-    title = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={'placeholder':'Title', 'class' : 'form-control'}))
-    content = forms.CharField(required=True, widget=forms.widgets.TextInput(attrs={'placeholder':'Content', 'class' : 'form-control'}))
-   
+class CreateNoteForm(forms.ModelForm):   
     class Meta:
         model = Note
         fields = ['title', 'content']
@@ -14,7 +11,7 @@ class CreateNoteForm(forms.ModelForm):
 
 
 class CreateCourseForm(forms.ModelForm):
-    description = forms.CharField(required=False)
+    description = forms.CharField(required=False, widget=forms.TextInput(attrs={'rows':3}))
     class Meta:
         model = Course
         fields = ['title', 'description']

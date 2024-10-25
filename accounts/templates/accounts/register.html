@@ -1,0 +1,43 @@
+{% extends 'core/admin/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8">
+            <h4 class="display-4 text-success text-center">Sign Up with us</h4>
+            <hr>
+            <form method="post" action="{% url 'Index' %}">
+                {% csrf_token %}
+
+                    {% render_field form.username class='form-control mt-2' placeholder='Your Username' %}
+
+                    {% render_field form.email class='form-control mt-2' placeholder='Your Email' %}
+
+                    {% render_field form.password type='password' class='form-control mt-2' placeholder='Your Password' %}
+
+                    {% render_field form.password2 class='form-control mt-2' placeholder='Confirm Password' %}
+    
+    
+                    <button type="submit" class="btn btn-success mt-2">sign in</button>
+            </form>
+            <hr>
+        </div>
+    </div>
+
+
+    
+</div>
+<div class="row justify-content-center">
+
+    <div class="col-md-6 my-5 d-flex gap-5 justify-content-center">
+        <li class="text-success"><a class="mt-5" href="{% url 'Login' %}"><strong>already have an account?</strong></a></li>
+        <li class="text-success"><a class="mt-5" href=""><strong>Login Problems</strong></a></li>
+    </div>
+
+</div>
+
+...
+
+</div>
+
+{% endblock %}

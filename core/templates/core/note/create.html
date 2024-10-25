@@ -1,15 +1,27 @@
 {% extends 'core/admin/base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block content %}
 <div class="container">
-    <div class="row mx-auto">
-        <div class="col-md-6 align-items-lg-between">
-            <h4 class="my-2 p-3" style="text-decoration: underline;">Write a note..</h4><hr class="">
+    <div class="row mt-2">
+        <div class="col-md-4">
+            <a href="{% url 'Index'  %}"><i class="fa fa-arrow-left display-6 text-success"></i></a>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="card shadow-lg col-md-6">
+            <div class="d-flex justify-content-center gap-2 align-items-center mt-3 text-success">
+                <h4 class="display-4 ">Write Note </h4>
+                <i class="fa fa-book" style="font-size: 40px;"></i>
+            </div>
+            <hr>
             <form action="" method="POST">
                 {% csrf_token %}
-                {{form}}
-                <button type="submit" class="btn btn-success">Write a note</button>
+                {% render_field form.title class='form-control mt-2' placeholder='Note Title...' %}
+                {% render_field form.content class='form-control mt-2' placeholder='Note description...' %}
+                <button type="submit" class="btn btn-success mt-3 me-auto">create <i class="fa fa-pencil mx-2"></i></button>
+                <hr>
             </form>
         </div>
     </div>
