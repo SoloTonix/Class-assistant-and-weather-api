@@ -1,33 +1,51 @@
 
 {% extends 'core/admin/base.html' %}
 {% load static %}
-    <div class="container mt-5">
-        <div class="row ">
-            <div class="col-md-7">
-                {% block content %}
-                {% if notes %}
 
-                    {% for note in notes %}
-                    <div class="Notes container p-3 border-bottom">
-                        <div class="OneNote">
-                            <a class="text-decoration-none text-dark" href="{% url 'DetailNote' note.id %}"><h5 class="text-success">{{note.title}}</h5></a>
+{% block content %}
+    <div class="container pt-2">
+
+        <div class="row mt-2 justify-content-center">
+            <div class=" col-md-7 d-flex align-items-center justify-content-center">
+                <h5 class=" text-center display-6 text-success text-decoration-underline">"Notes"</h5>
+            </div>
+        </div>
+
+        <div class="row mt-4 justify-content-center">
+            
+                <div class="col-md-8 ">
+                {% for note in notes %}
+                    <div class="d-flex">
+                        <div class="">
+                            <a class="text-decoration-none text-success" href="{% url 'DetailNote' note.id %}"><h5 class=""><i class="fa fa-book me-3"></i>{{note.title}}</h5></a>
                         </div>
                         <div class="OneNoteIcons justify-content-end ms-auto">
                             <a href="{% url 'UpdateNote' note.pk %}"><i class="fa fa-pencil"></i></i></a>
-                            <a href="{% url 'DeleteNote' note.pk %}"><i class="fa fa-trash"></i></a>
+                            <a href="{% url 'DeleteNote' note.pk %}" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-trash"></i></a>
                         </div>
-                        <hr>
                     </div>
+                    <hr>  
                     
-                    
-                    {% endfor %}
-                {% else %}
-                <div class="col-lg-8 mt-2 m-auto alert alert-dismissible alert-info fade show">
-                    <h3 class="display-6">This book has no notes in it</h3>
-                    <button type="button"class="btn-close" data-bs-dismiss="alert" type="button" aria-label="close"></button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title " id="exampleModalLabel"><i class="fa fa-trash mx-2 text-success"></i>Trash {{course.title}} ?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        <p>The selected course book is about to be permanently trashed. <strong>Note: This action can't be undone</strong></p>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a href="{% url 'DeleteNote' note.pk %}" class="btn btn-success">Yes, delete?</a>
+                        </div>
+                    </div>
+                    </div>
                 </div>
-                {% endif %}
-            </div>
+                {% endfor %}
+                </div>
 
         </div>
 

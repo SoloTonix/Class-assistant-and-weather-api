@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     # Internal Apps
     'core.apps.CoreConfig',
     'api.apps.ApiConfig',
-    'users.apps.UsersConfig',
     'accounts',
     # External Apps
     'rest_framework',

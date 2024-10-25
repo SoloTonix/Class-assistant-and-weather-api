@@ -28,7 +28,7 @@ def Login(request):
 
         if user is not None and user.is_active:
             login(request, user)
-            messages.success(request, f'welcome {username}')
+            messages.success(request, f'Welcome {username}')
             return redirect('Index')
         messages.success(request, 'This user does not exist...')
 

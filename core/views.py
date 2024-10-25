@@ -41,7 +41,7 @@ def CreateCourse(request):
             var.save()
 
             messages.success(request, 'Your course book haas been created succesfully')
-            return redirect('Index')
+            return redirect('CourseDetail', var.pk)
         else:
             messages.warning(request, 'Sorry something went wrong')
             return redirect('Index')
@@ -52,7 +52,7 @@ def CreateCourse(request):
 
 @login_required
 def UpdateCourse(request, pk):
-    course = Course.objects.get(id=pk)
+    course = Course.objects.get(pk=pk)
     form = CreateCourseForm(instance=course)
     if course.author == request.user:
         if request.method == 'POST':
@@ -90,7 +90,7 @@ def CreateNote(request, pk):
             messages.warning(request, 'Sorry something went wrong')
     else:
         form = CreateNoteForm()
-    context = {'form':form}
+    context = {'form':form, 'course':course}
     return render(request, 'core/note/create.html', context)
 
 @login_required
@@ -113,13 +113,13 @@ def UpdateNote(request, pk):
 @login_required
 def DetailNote(request, pk):
     note = Note.objects.get(id=pk)
+    course = note.course
     if note.course.author == request.user:
-        context = {'note':note}
+        context = {'note':note, 'course':course}
         return render(request, 'core/note/detail.html', context)
 
 @login_required
 def DeleteNote(request, pk):
-
     note = Note.objects.get(id=pk)
     if note.course.author == request.user:
         note.delete()

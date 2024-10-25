@@ -1,26 +1,63 @@
 {% extends 'core/admin/base.html' %}
 {% load static %}
 
-<div class="container">
-    {% block content %}
-        <div class="row mt-5  justify-content-center">
-            <div class=" col-md-7 ">
-                <h4 class=" text-center display-4 text-success">"{{note.title}}"</h4>
-                <hr><span class='fw-bold'>{{note.created}}</span>
-            </div>
-        </div>
-        <div class="row justify-content-center mt-3 p-3">
-            <div class="col-lg-8">
-                <p>{{note.content}}</p>
-            </div>
-        </div>
 
-        <div class="row justify-content-end ">
-            <div class="col-md-4 d-flex gap-2">
-                <a href="{% url 'DeleteNote' note.id %}"><button name="delete" class="btn btn-outline-danger">Delete</button></a>
-                <a href="{% url 'UpdateNote' note.id %}"><button name="update" class="btn btn-outline-success">Update</button></a>
+    {% block content %}
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <a href="{% url 'CourseDetail' course.pk  %}"><i class="fa fa-arrow-left display-6 text-success"></i></a>
             </div>
         </div>
+        <div class="row mt-2  justify-content-center">
+            <div class=" col-md-7 d-flex align-items-center justify-content-center">
+                <h4 class=" text-center display-4 text-success text-decoration-underline">"{{note.title}}"</h4>
+            </div>
+        </div>
+    
+        <div class="row justify-content-center mt-2">
+            <div class="col text-center">
+                <span class='text-success'><i class="fa fa-clock me-2"></i> Created: {{note.created}}</span>
+            </div>
+        </div>
+    
+        <div class="row justify-content-center mt-3 p-3">
+            <div class="col-md-6">
+                <div class="card shadow-sm text-center">
+                    <p class="m-3">{{note.content}}</p>
+                </div>
+            </div>
+    
+        </div>
+    
+        <div class="row justify-content-center ">
+            <div class="col-md-4 d-flex gap-2 justify-content-end">
+                <a href="{% url 'DeleteNote' note.id %}" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete <i class="fa fa-trash"></i></a>
+                <a href="{% url 'UpdateNote' note.id %}" class="btn btn-outline-success">Update <i class="fa fa-screwdriver-wrench"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title " id="exampleModalLabel"><i class="fa fa-trash mx-2 text-success"></i>Trash {{course.title}} ?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <p>The selected course book is about to be permanently trashed. <strong>Note: This action can't be undone</strong></p>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <a href="{% url 'DeleteCourse' note.pk %}" class="btn btn-success">Yes, delete?</a>
+        </div>
+    </div>
+    </div>
+
+</div>
+
 
     {% endblock %}
     

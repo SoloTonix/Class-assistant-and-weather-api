@@ -5,9 +5,12 @@ from core.models import *
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status 
+import requests
+import datetime
 
 # Create your views here.
 
+# UNCOMPLETED #
 @api_view(['GET','POST'])
 def List(request):
     if request.method == 'GET':
@@ -19,10 +22,6 @@ def List(request):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        
-# THIRD PARTY API'S.
-import requests
-import datetime
 
 
 def WeatherAPI(request):
@@ -47,6 +46,7 @@ def WeatherAPI(request):
 
 
 
+# UNCOMPLETED #
 def NewsAPI(request):
     API_KEY = '80b8b675ee4c47c68665dc13e7a4f97e'
     url = f'https://newsapi.org/v2/everything?q=Apple&from=2024-05-16&sortBy=popularity&apiKey={API_KEY}'

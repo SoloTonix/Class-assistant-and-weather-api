@@ -36,26 +36,27 @@
                         <li><a class="dropdown-item" href="{% url 'Logout' %}">Logout</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'NewsAPI' %}">NEWS <i class="fas fa-comment"></i></a></li>
+                <li class="nav-item"><a class="nav-link" href="">NEWS <i class="fas fa-comment"></i></a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'WeatherAPI' %}">WEATHER <i class="fas fa-cloud"></i></a></li>
             </ul>
           
                 <button class="btn btn-outline-dark" type="button" ><a href="#sidebar" class="text-decoration-none text-white" role="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">Explore</a>
-                    
                     <i class="fa fa-book"></i>
                 </button>
             
         </div>
     </div>
 </nav>
-{% if messages %}
-{% for message in messages %}
-<div class="col-lg-8 mt-2 m-auto alert alert-dismissible alert-{{message.tags}} fade show">
-    {{message}}
-    <button type="button"class="btn-close" data-bs-dismiss="alert" type="button" aria-label="close"></button>
-</div>
-{% endfor %}
-{% endif %}
+
+        {% if messages %}
+        {% for message in messages %}
+        <div class="col-lg-8 mt-2 m-auto alert alert-dismissible alert-{{message.tags}} fade show">
+            {{message}}
+            <button type="button"class="btn-close" data-bs-dismiss="alert" type="button" aria-label="close"></button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        
 <section>
     {% block content %}
     {% endblock %}
