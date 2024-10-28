@@ -2,7 +2,24 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from .forms import *
+from .models import Profile
+from core.models import *
+from django.views.generic import DetailView
+from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
+from django.contrib.auth.decorators import login_required, user_passes_test
 # Create your views here.
+
+
+@login_required
+def UserProfile(request):
+    profile = Profile.objects.get(user=request.user)
+    courses = Course.objects.filter(author=profile.user)
+    
+    context = {'profile' : profile,
+               'courses':courses}
+    return render(request, 'accounts/profile.html', context)
+
+
 def Register(request):
     form = RegisterUserForm()
     if request.method == 'POST':

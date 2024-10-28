@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def Index(request):
-    courses = Course.objects.filter(author=request.user).order_by('-created') # Retrieve Data from the Database
+    courses = Course.objects.filter(author=request.user).order_by('-created')# Retrieve Data from the Database
     context = {'courses':courses} # Pass retrieved data to the frontend
 
     return render(request, 'core/admin/index.html', context)
