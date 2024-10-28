@@ -16,8 +16,8 @@
             <hr>
             <form action="" method="POST">
                 {% csrf_token %}
-                {% render_field form.title class='form-control mt-2' placeholder='Note Title' %}
-                {% render_field form.description class='form-control mt-2' placeholder='Note description' %}
+                {% render_field form.title class='form-control mt-2' placeholder='Course Title' %}
+                {% render_field form.description class='form-control mt-2' placeholder='Course description' %}
                 <button type="submit" class="btn btn-success mt-3 me-auto">create <i class="fa fa-book mx-2"></i></button>
                 <hr>
             </form>
