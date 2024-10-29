@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from .forms import *
 from .models import Profile
 from core.models import *
-from django.views.generic import DetailView
+from django.views.generic import DetailView, UpdateView
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.contrib.auth.decorators import login_required, user_passes_test
+
 # Create your views here.
 
 
@@ -19,6 +21,17 @@ def UserProfile(request):
                'courses':courses}
     return render(request, 'accounts/profile.html', context)
 
+class ProfileEdit(UpdateView):
+    models = Profile
+    fields = ( 'full_name', 'birth_date','picture', 'bio', 'mobile', 'email', 'location', 'career_path', 'grade_points', 'achievements', 'certificates')
+    template_name = 'accounts/profile_edit.html'
+    success_url = reverse_lazy('UserProfile')
+
+    def get_object(self):
+        return self.request.user.profile
+    
+        
+   
 
 def Register(request):
     form = RegisterUserForm()

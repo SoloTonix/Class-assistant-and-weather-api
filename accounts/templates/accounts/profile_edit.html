@@ -1,0 +1,47 @@
+{% extends 'core/admin/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center mb-3">
+        <div class="col-md-5 text-success mt-4">
+            <h3 class="text-center text-decoration-underline">"Profile Edit<i class="fa fa-user mx-2"></i>"</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5 text-success">
+            <a href="{% url 'UserProfile' %}"><i class="fa fa-arrow-left display-6"></i></a>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <form action="" method="POST">
+
+                {% csrf_token %}
+                
+                
+                {% render_field form.full_name class='form-control mt-2' placeholder='Full Name' %}
+                {% render_field form.birth_date class='form-control mt-2' placeholder='Date of Birth' %}
+                
+                {% render_field form.bio class='form-control mt-2' placeholder='Personal Bio' %}
+                {% render_field form.mobile class='form-control mt-2' placeholder='Mobile number' %}
+                {% render_field form.email class='form-control mt-2' placeholder='Email' %}
+                {% render_field form.location class='form-control mt-2' placeholder='Location'%}
+                {% render_field form.grade_points class='form-control mt-2' placeholder='Grade Point'%}
+                {% render_field form.achievements class='form-control mt-2' placeholder='Your achievements'%}
+                {% render_field form.certificates class='form-control mt-2' placeholder='Certificates'%}
+                {% render_field form.picture class='form-control mt-2' placeholder='' %}
+
+                {% if form.error %}
+                {{form.error}}
+                {% endif %}
+                <div class="d-grid">
+                    <button class="btn btn-outline-success" type="submit" >edit</button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
