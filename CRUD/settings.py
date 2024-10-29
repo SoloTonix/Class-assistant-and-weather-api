@@ -43,10 +43,8 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'accounts',
     # External Apps
-    'rest_framework',
-    'crispy_forms',
-    'crispy_bootstrap5',
     'widget_tweaks',
+    'newsapi',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
