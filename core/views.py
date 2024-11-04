@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages 
+from django.db.models import Q
 from django.views.generic import CreateView, DeleteView, DetailView, UpdateView, ListView
 from django.urls import reverse_lazy
 from.models import *
@@ -69,9 +70,15 @@ def UpdateCourse(request, pk):
 
 def DeleteCourse(request, pk):
     course = Course.objects.get(pk=pk)
-    course.delete()
+    course.delete() 
     return redirect('Index')
 
+def SearchCourse(request):
+    search = request.GET.get('search')
+    courses = Course.objects.filter(Q(title__icontains=search)|Q(description__icontains=search)|Q(author__username__icontains=search))
+    #|Q(description__icontains=search)|Q(author__icontains=search)
+    context = {'courses':courses}
+    return render(request, 'core/course/search.html', context)
 
 # Course notes C.R.U.D.
 @login_required
@@ -107,7 +114,7 @@ def UpdateNote(request, pk):
                 messages.success(request, 'Success....')
                 return redirect('DetailNote', note.pk)
     
-    context = {'form':form}
+    context = {'form':form, 'note':note}
     return render(request, 'core/note/update.html', context)
 
 @login_required

@@ -12,6 +12,7 @@ urlpatterns = [
     path('course-notes/<int:pk>/', CourseDetail, name='CourseDetail'),
     path('update-course/<int:pk>/', UpdateCourse, name='UpdateCourse'),
     path('delete-course/<int:pk>/', DeleteCourse, name='DeleteCourse'),
+    path('search-course/', SearchCourse, name='SearchCourse'),
 
     # Course-Notes URLS 
     path('note/<int:pk>/', DetailNote, name='DetailNote'),

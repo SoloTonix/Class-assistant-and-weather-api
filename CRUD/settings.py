@@ -44,11 +44,10 @@ INSTALLED_APPS = [
     'accounts',
     # External Apps
     'widget_tweaks',
-    'newsapi',
+
 ]
 
-CRISPY_TEMPLATE_PACK = 'bootstrap5'
-CISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

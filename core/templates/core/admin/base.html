@@ -40,9 +40,10 @@
                 <li class="nav-item"><a class="nav-link" href="{% url 'WeatherAPI' %}">WEATHER <i class="fas fa-cloud"></i></a></li>
             </ul>
           
-                <button class="btn btn-outline-dark" type="button" ><a href="#sidebar" class="text-decoration-none text-white" role="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">Explore</a>
-                    <i class="fa fa-book"></i>
-                </button>
+            <form class="d-flex" action="{% url 'SearchCourse' %}" method="GET">
+                <input class="form-control me-2" type="search" name="search" value="{{requuest.GET}}" placeholder="Find Your stuffs..." aria-label="Search">
+                <button class="btn btn-success" type="submit"><i class="fa fas-user"></i>search</button>
+              </form>
             
         </div>
     </div>

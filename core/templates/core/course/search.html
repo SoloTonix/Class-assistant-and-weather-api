@@ -1,0 +1,44 @@
+{% extends 'core/admin/base.html' %}
+
+{% block content %}
+<div class="container">
+
+    {% if courses %}
+    {% for course in courses %}
+    <div class="row mt-3">
+        
+        <div class="col-md-7">
+            <div class="card border-secondary mb-3"> 
+                <div class="card-header d-flex justify-content-between">
+                    <div class="">
+                        <a style="text-decoration: none;" href="{% url 'CourseDetail' course.pk %}" class=""><h3>{{course.title}}</h3></a>
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                    <a href="{% url 'CreateNote' course.pk %}"><i class="fa fa-pencil"></i></a>
+                    <a href="{% url 'UpdateCourse' course.pk %}"><i class="fa-solid fa-screwdriver-wrench m-2"></i></a>
+                    <a href="{% url 'DeleteCourse' course.pk %}" data-bs-toggle="modal" data-bs-target="#exampleModal"><i style="font-size: 20px;"class="fa fa-trash m-2"></i></a>
+                    </div>
+                    
+                </div>
+                <div class="card-body text-secondary">
+                
+                <p class="card-tittle">{{course.description}}</p>
+                <p class=""><i class="fa fa-clock mx-2"></i>{{course.created|timesince}}</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    {% endfor %}
+
+    {% else %}
+    
+    <div class="row justify-content-center mt-5">
+        <h3 class="display-6 text-center align-items-center text-success">No results matches your search <i class="fa fa-heart-broken"></i></h3>
+    </div>
+    
+    
+    {% endif %}
+</div>
+{% endblock  %}

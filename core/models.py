@@ -18,7 +18,7 @@ class Course(models.Model):
     
 class Note(models.Model):
     title = models.CharField(max_length=200)
-    content = models.TextField()
+    content = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
 

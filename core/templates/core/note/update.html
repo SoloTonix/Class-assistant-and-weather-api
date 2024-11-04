@@ -4,6 +4,11 @@
 
 {% block content %}
 <div class="container">
+    <div class="row mt-2">
+        <div class="col-md-4">
+            <a href="{% url 'DetailNote' note.pk  %}"><i class="fa fa-arrow-left display-6 text-success"></i></a>
+        </div>
+    </div>
     <div class="row justify-content-center mt-5">
 
         <div class="card col-md-8 p-3">
